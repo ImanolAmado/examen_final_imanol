@@ -49,17 +49,41 @@ class ActorController extends Controller
 
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
-    {
-        //
+    {        
+        return view('actor.create');
     }
+
+
+    public function crearActor(Request $request){
+
+        $request->validate ([
+
+        'nombre' => 'required|string|max:100',
+        'email' => 'required|email',
+        'fecha' => 'required|date',
+        'telefono' => 'required|integer|max_digits:9|min_digits:9',
+        'direccion' => 'required|string|max:30',
+        'genero' => 'required|in:masculino,femenino,otro',
+        ]);
+
+        $actor = new Actor();
+
+        $actor->nombre = $request->nombre;
+        $actor->email = $request->email;
+        $actor->genero = $request->genero;
+        $actor->fecha_nacimiento = $request->fecha;
+        $actor->direccion = $request->direccion;
+        $actor->telefono = $request->telefono;
+
+        $actor->save();
+
+        return redirect()->route('home');
+
+    }
+
+
 
     /**
      * Store a newly created resource in storage.

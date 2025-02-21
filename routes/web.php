@@ -35,6 +35,6 @@ Route::get('/asignar', [ActorController::class, 'index'])->name('asignar');
 Route::post('/asignaractor', [ActorController::class, 'asignarActor'])->name('actor.asignar');
 Route::get('/agregaractor', [ActorController::class, 'create'])->name('agregar');
 Route::get('/administrar', [ActorController::class, 'administrar'])->name('administrar');
-
+Route::post('/crearactor', [ActorController::class, 'crearActor'])->name('actor.crear');
 
 require __DIR__.'/auth.php';
